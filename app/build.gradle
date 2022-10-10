@@ -3,9 +3,6 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath "io.realm:realm-gradle-plugin:${libraryVersion.realm}"
-    }
 }
 
 plugins {
@@ -13,8 +10,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
 }
-
-apply plugin: "realm-android"
 
 android {
 
@@ -53,4 +48,5 @@ dependencies {
 
     implementation appDependencies.material
     implementation appDependencies.koinAndroid
+    implementation appDependencies.viewBinding
 }

@@ -5,6 +5,7 @@ buildscript {
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -22,7 +23,7 @@ android {
         all {
             buildConfigField("String",
                     "API",
-                    "\"https://api.exchangerate.host/\""
+                    "\"https://developers.paysera.com/tasks/api/\""
             )
         }
 
@@ -45,9 +46,6 @@ dependencies {
     implementation dataDependencies.converterGson
     implementation dataDependencies.gson
 
-    implementation dataDependencies.rxJava3
-
-    api dataDependencies.realmKotlin
     api dataDependencies.bson
 
     implementation dataDependencies.coroutines
@@ -56,4 +54,8 @@ dependencies {
 
     implementation dataDependencies.timber
     implementation dataDependencies.okHttpLogging
+
+    implementation dataDependencies.roomRuntime
+    kapt dataDependencies.roomCompiler
+    implementation dataDependencies.roomKtx
 }

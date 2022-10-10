@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 val presentationModule = module {
     viewModel<CurrencyConverterViewModelApi> {
-        CurrencyConverterViewModel()
+        CurrencyConverterViewModel(get(), get(), get(), get())
     }
 }

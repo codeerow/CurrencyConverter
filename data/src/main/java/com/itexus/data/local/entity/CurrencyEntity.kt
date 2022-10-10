@@ -1,13 +1,11 @@
 package com.itexus.data.local.entity
 
-import io.realm.kotlin.types.RealmObject
-import io.realm.kotlin.types.annotations.PrimaryKey
-import org.bson.types.Decimal128
-import org.bson.types.Decimal128.POSITIVE_ZERO
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class CurrencyEntity : RealmObject {
-    @PrimaryKey
-    var id: String = ""
-    var name: String = ""
-    var value: Decimal128 = POSITIVE_ZERO
-}
+@Entity(tableName = "currencies")
+data class CurrencyEntity(
+    @PrimaryKey @ColumnInfo(name = "name") val name: String = "",
+    @ColumnInfo(name = "value") val value: Double = 0.0,
+)

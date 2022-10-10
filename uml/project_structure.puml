@@ -1,0 +1,38 @@
+@startuml
+
+
+database Room
+cloud "REST API" as rest
+
+node data {
+    package local
+    package remote
+
+
+    local -r-> Room
+    remote -r-> rest
+
+    local -[hidden]- remote
+}
+
+node domain {
+    package usecase
+}
+
+rectangle presentation {
+    node ui
+    node logic
+
+    logic -> ui : impl
+}
+
+domain --> data : impl
+
+logic --> domain : impl
+
+app -> domain : impl
+app -> data : impl
+app -> presentation : impl
+
+
+@enduml

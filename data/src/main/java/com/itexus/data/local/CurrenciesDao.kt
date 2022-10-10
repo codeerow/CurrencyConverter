@@ -1,33 +1,21 @@
 package com.itexus.data.local
 
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.Query
 import com.itexus.data.local.entity.CurrencyEntity
-import io.realm.kotlin.Realm
-import io.realm.kotlin.UpdatePolicy
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
-class CurrenciesDao(private val realm: Realm) {
+@Dao
+interface CurrenciesDao {
 
-    suspend fun insertAll(entities: List<CurrencyEntity>) {
-        realm.write {
-            entities.forEach {
-                copyToRealm(it, UpdatePolicy.ALL)
-            }
-        }
-    }
+    @Insert
+    suspend fun insertAll(entities: List<CurrencyEntity>)
 
-    fun readAll(): Flow<List<CurrencyEntity>> {
-        return realm.query(CurrencyEntity::class)
-            .find()
-            .asFlow()
-            .map { it.list }
-    }
+    @Insert(onConflict = REPLACE)
+    suspend fun insert(entity: CurrencyEntity)
 
-    fun read(id: String): Flow<CurrencyEntity?> {
-        return realm.query(
-            CurrencyEntity::class,
-            query = "id == $0",
-            id,
-        ).first().asFlow().map { it.obj }
-    }
+    @Query("SELECT * FROM currencies")
+    fun readAll(): Flow<List<CurrencyEntity>>
 }

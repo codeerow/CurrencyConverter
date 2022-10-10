@@ -31,9 +31,17 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation presentationUiDependencies.material
     implementation presentationUiDependencies.koinAndroid
+    implementation presentationUiDependencies.viewBinding
+
+    implementation presentationUiDependencies.fragmentKtx
+    implementation presentationUiDependencies.timber
+    implementation presentationUiDependencies.lottie
 }

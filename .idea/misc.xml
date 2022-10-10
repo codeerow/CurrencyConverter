@@ -4,8 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/itexus/CurrencyExchanger/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/itexus/CurrencyExchanger/data/src/main/res/layout/main_activity.xml" value="0.1983695652173913" />
+        <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/drawable/btn_rounded_corne.xml" value="0.166" />
+        <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/drawable/btn_rounded_corner.xml" value="0.166" />
         <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
-        <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/layout/screen_currency_converter.xml" value="0.22826086956521738" />
+        <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/layout/list_item_currencies.xml" value="0.1" />
+        <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/layout/screen_currency_converter.xml" value="0.1" />
+        <entry key="..\:/itexus/CurrencyExchanger/presentation/ui/src/main/res/layout/spinner_item.xml" value="0.1983695652173913" />
       </map>
     </option>
   </component>
