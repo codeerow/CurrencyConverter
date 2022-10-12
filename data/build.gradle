@@ -1,0 +1,59 @@
+buildscript {
+    apply from: '../buildsystem/dependencies.gradle'
+}
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+
+    defaultConfig {
+        minSdk androidMinSdkVersion
+        targetSdk androidTargetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        all {
+            buildConfigField("String",
+                    "API",
+                    "\"https://api.exchangerate.host/\""
+            )
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    api dataDependencies.retrofit
+    implementation dataDependencies.converterGson
+    implementation dataDependencies.gson
+
+    implementation dataDependencies.rxJava3
+
+    api dataDependencies.realmKotlin
+    api dataDependencies.bson
+
+    implementation dataDependencies.coroutines
+
+    implementation dataDependencies.koinAndroid
+
+    implementation dataDependencies.timber
+    implementation dataDependencies.okHttpLogging
+}

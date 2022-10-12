@@ -1,0 +1,77 @@
+Map<String, String> version = [
+        core: "1.9.0",
+        appcompat: "1.5.1",
+        material: "1.6.1",
+        constraintLayout: "2.1.4",
+        realm: "10.11.1",
+
+        // DI
+        koin: "3.2.2",
+
+        // Libraries
+        rxJava3: "3.1.5",
+        retrofit: "2.9.0",
+        gson: "2.9.1",
+        realmKotlin: "1.2.0",
+        mongoDb: "4.7.2",
+        coroutines: "1.6.4",
+        timber: "5.0.1",
+        okHttp: "4.9.1"
+]
+
+def library = [
+        core:             "androidx.core:core-ktx:${version.core}",
+        appcompat:        "androidx.appcompat:appcompat:${version.appcompat}",
+        material:         "com.google.android.material:material:${version.material}",
+        constraintLayout: "androidx.constraintlayout:constraintlayout:${version.constraintLayout}",
+        koin:             "io.insert-koin:koin-core:${version.koin}",
+        koinAndroid:      "io.insert-koin:koin-android-compat:${version.koin}",
+        rxJava3:          "io.reactivex.rxjava3:rxjava:${version.rxJava3}",
+        retrofit:         "com.squareup.retrofit2:retrofit:${version.retrofit}",
+        converterGson:    "com.squareup.retrofit2:converter-gson:${version.retrofit}",
+        gson:             "com.google.code.gson:gson:${version.gson}",
+        realmKotlin:      "io.realm.kotlin:library-base:${version.realmKotlin}",
+        bson:             "org.mongodb:bson:${version.mongoDb}",
+        timber:           "com.jakewharton.timber:timber:${version.timber}",
+        okHttpLogging:    "com.squareup.okhttp3:logging-interceptor:${version.okHttp}",
+        coroutines:       "org.jetbrains.kotlinx:kotlinx-coroutines-core:${version.coroutines}"
+]
+
+ext {
+  androidMinSdkVersion = 23
+  androidTargetSdkVersion = 33
+  androidCompileSdkVersion = 33
+  libraryVersion = version
+
+  appDependencies = [
+          material:          library.material,
+          koinAndroid:       library.koinAndroid
+  ]
+
+  presentationLogicDependencies = [
+          koinAndroid:       library.koinAndroid
+  ]
+
+  presentationUiDependencies = [
+          material:          library.material,
+          koinAndroid:       library.koinAndroid
+  ]
+
+  domainDependencies = [
+          rxJava3:           library.rxJava3,
+          koinAndroid:       library.koinAndroid
+  ]
+
+  dataDependencies = [
+          retrofit:          library.retrofit,
+          converterGson:     library.converterGson,
+          gson:              library.gson,
+          rxJava3:           library.rxJava3,
+          realmKotlin:       library.realmKotlin,
+          bson:              library.bson,
+          coroutines:        library.coroutines,
+          koinAndroid:       library.koinAndroid,
+          timber:            library.timber,
+          okHttpLogging:     library.okHttpLogging
+  ]
+}

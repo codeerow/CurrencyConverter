@@ -1,0 +1,77 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    apply from: 'buildsystem/dependencies.gradle'
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:3.2.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.2.2' apply false
+    id 'com.android.library' version '7.2.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'org.jetbrains.kotlin.jvm' version '1.7.10' apply false
+    id 'io.gitlab.arturbosch.detekt' version '1.21.0'
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.21.0"
+}
+
+detekt {
+    toolVersion = '1.21.0'
+    input = files(
+            "app/src/main/java/",
+            "app/src/test/java/",
+            "data/src/main/java/",
+            "data/src/test/java/",
+            "domain/src/main/java/",
+            "domain/src/test/java/",
+            "presentation/logic/main/java/",
+            "presentation/logic/src/test/java/",
+            "presentation/ui/main/java/",
+            "presentation/ui/src/test/java/"
+    )
+
+    parallel = true
+    config = files("config/detekt/detekt.yml")
+    buildUponDefaultConfig = false
+    allRules = false
+    baseline = file("path/to/baseline.xml")
+    disableDefaultRuleSets = false
+    debug = false
+    ignoreFailures = false
+    basePath = projectDir
+    reports {
+        xml {
+            enabled = true
+            destination = file("build/reports/detekt.xml")
+        }
+        html {
+            enabled = true
+            destination = file("build/reports/detekt.html")
+        }
+        txt {
+            enabled = true
+            destination = file("build/reports/detekt.txt")
+        }
+        sarif {
+            enabled = true
+            destination = file("build/reports/detekt.sarif")
+        }
+        custom {
+            reportId = "CustomJsonReport"
+            destination = file("build/reports/detekt.json")
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
